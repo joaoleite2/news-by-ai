@@ -3,8 +3,16 @@
 import { Library, ListCollapse, Zap } from 'lucide-react'
 import Card from './ui/Card'
 import { useState } from 'react'
+import { NewsInfo } from '../page'
 
-const cards = [
+interface CardType {
+  title: string
+  description: string
+  icon: React.ReactNode
+  color: 'amber' | 'blue' | 'red'
+}
+
+const cards: CardType[] = [
   {
     title: 'Leitura Rápida',
     description: 'Receba notícias em formato de leitura rápida, com resumos e informações essenciais.',
@@ -20,16 +28,20 @@ const cards = [
   {
     title: 'Pontos-Chave ',
     description: 'Receba notícias em formato de pontos-chave, com informações essenciais e detalhadas.',
-    icon: <ListCollapse fill='currentColor'  size={30} className='text-red-500' />,
+    icon: <ListCollapse fill='currentColor' size={30} className='text-red-500' />,
     color: 'red'
   }
 ]
 
-const TextType = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+interface TextTypeProps {
+  setNewsInfo: React.Dispatch<React.SetStateAction<NewsInfo>>
+  newsInfo: NewsInfo
+}
+
+const TextType: React.FC<TextTypeProps> = ({ setNewsInfo, newsInfo }) => {
 
   const handleClick = (index: number) => {
-    setSelectedIndex(index)
+    setNewsInfo({ ...newsInfo, textType: cards[index].title })
   }
 
   return (
@@ -42,7 +54,7 @@ const TextType = () => {
             description={card.description} 
             icon={card.icon} 
             color={card.color}
-            selected={selectedIndex === index}
+            selected={newsInfo.textType === card.title}
             onClick={() => handleClick(index)}
           />
         ))}
