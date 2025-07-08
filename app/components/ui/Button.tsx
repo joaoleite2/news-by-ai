@@ -1,9 +1,10 @@
 interface ButtonProps {
   children: React.ReactNode
   variant?: 'primary' | 'secondary'
+  onClick?: () => void
 }
 
-const Button = ({children, variant = 'primary'}: ButtonProps) => {
+const Button = ({children, variant = 'primary', onClick}: ButtonProps) => {
   const ui = {
     base: 'rounded-full py-2 px-4 cursor-pointer select-none border-2 transition-all duration-300',
     primary: 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600 hover:border-blue-600',
@@ -11,7 +12,7 @@ const Button = ({children, variant = 'primary'}: ButtonProps) => {
   }
   
   return (
-    <button className={`${ui.base} ${ui[variant]}`}>
+    <button className={`${ui.base} ${ui[variant]}`} onClick={onClick}>
       <span>{children}</span>
     </button>
   )
