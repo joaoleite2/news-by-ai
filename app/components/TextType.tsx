@@ -1,8 +1,7 @@
 'use client'
 
-import { Library, ListCollapse, Zap } from 'lucide-react'
+import { Library, Zap } from 'lucide-react'
 import Card from './ui/Card'
-import { useState } from 'react'
 import { NewsInfo } from '../page'
 
 interface CardType {

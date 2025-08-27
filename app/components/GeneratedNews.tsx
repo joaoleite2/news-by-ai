@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Link2, Calendar, Clock, ArrowLeft, Share2, Download, Printer } from 'lucide-react'
+import { Link2, Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react'
 import { News } from '../page'
 import EaiNews from './EaiNews'
 import { useState } from 'react'
