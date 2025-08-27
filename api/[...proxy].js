@@ -19,8 +19,6 @@ export default async function handler(req, res) {
         client_email,
         private_key,
       },
-      // Especifica que queremos um token para chamar nosso backend
-      scopes: 'https://www.googleapis.com/auth/cloud-platform',
     });
 
     // 3. Gera um token de identidade para a URL do nosso backend
