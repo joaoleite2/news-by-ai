@@ -37,7 +37,7 @@ const topics = [
 
 const NewsTopic: React.FC<NewsTopicProps> = ({ setNewsInfo, newsInfo }) => {
   const handleSelect = (topic: string) => {
-    if(newsInfo.topics.length < 7) {
+    if(newsInfo.topics.length < 4) {
       setNewsInfo({ ...newsInfo, topics: [...newsInfo.topics, topic] })
     }
     if(newsInfo.topics.includes(topic)) {
@@ -53,7 +53,7 @@ const NewsTopic: React.FC<NewsTopicProps> = ({ setNewsInfo, newsInfo }) => {
         ))}
       </div>
       <p className='text-gray-500 text-xs sm:text-sm mt-4 sm:mt-5 text-center'>
-        {newsInfo.topics.length}/7 assuntos selecionados
+        {newsInfo.topics.length}/4 assuntos selecionados
       </p>
     </section>
   )
