@@ -165,7 +165,7 @@ const GeneratedNews = ({ news, onReset }: GeneratedNewsProps) => {
                className="btn-primary flex items-center gap-2 text-sm sm:text-base"
              >
                <ArrowLeft className="w-4 h-4" />
-               Gerar Nova Notícia
+               Gerar nova notícia
              </button>
            </div>
          </motion.div>
