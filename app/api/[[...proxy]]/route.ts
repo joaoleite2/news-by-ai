@@ -57,10 +57,13 @@ async function handler(req: NextRequest) {
       },
     });
 
-  } catch (error: any) {
-    console.error("Erro no proxy da API:", error.response?.data || error.message);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+    const errorResponse = (error as { response?: { data?: unknown } })?.response?.data;
+    
+    console.error("Erro no proxy da API:", errorResponse || errorMessage);
     return NextResponse.json(
-      { message: "Erro ao se comunicar com o serviço de backend.", error: error.message },
+      { message: "Erro ao se comunicar com o serviço de backend.", error: errorMessage },
       { status: 500 }
     );
   }

@@ -54,7 +54,7 @@ const Home = () => {
     }, 2000)
 
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/news`, newsInfo)
+      const response = await axios.post(`/api/news`, newsInfo)
       setLoadingProgress(100)
       setTimeout(() => {
         setGeneratedNews(response.data)
