@@ -33,6 +33,9 @@ const GeneratedNews = ({ news, onReset }: GeneratedNewsProps) => {
       new URL(font)
       return true
     } catch (error) {
+      if(error) {
+        return false
+      }
       return false
     }
   }
