@@ -1,1 +1,76 @@
 @import "tailwindcss";
+
+/* Estilos personalizados para a notícia gerada */
+@layer components {
+  .news-content {
+    @apply text-gray-700 leading-relaxed;
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+  
+  .news-content p {
+    @apply mb-6;
+  }
+  
+  .news-content p:last-child {
+    @apply mb-0;
+  }
+  
+  /* Melhorar a aparência dos links */
+  .news-content a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+  }
+  
+  /* Estilo para impressão */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    
+    .print-content {
+      @apply text-black;
+    }
+  }
+  
+  /* Gradiente personalizado para o header */
+  .news-header-gradient {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  }
+  
+  /* Animação de shimmer para loading */
+  .shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  /* Estilo para botões com hover melhorado */
+  .btn-primary {
+    @apply bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all duration-200;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .btn-primary:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-gray-700 border border-gray-200 px-4 py-2 rounded-lg hover:bg-gray-50 transition-all duration-200;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  .btn-secondary:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+  }
+}

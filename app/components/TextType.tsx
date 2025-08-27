@@ -25,12 +25,12 @@ const cards: CardType[] = [
     icon: <Library fill='currentColor' size={30} className='text-blue-500' />,
     color: 'blue'
   },
-  {
-    title: 'Pontos-Chave ',
-    description: 'Receba notícias em formato de pontos-chave, com informações essenciais e detalhadas.',
-    icon: <ListCollapse fill='currentColor' size={30} className='text-red-500' />,
-    color: 'red'
-  }
+  // {
+  //   title: 'Pontos-Chave ',
+  //   description: 'Receba notícias em formato de pontos-chave, com informações essenciais e detalhadas.',
+  //   icon: <ListCollapse fill='currentColor' size={30} className='text-red-500' />,
+  //   color: 'red'
+  // }
 ]
 
 interface TextTypeProps {
