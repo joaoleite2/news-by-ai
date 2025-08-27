@@ -46,13 +46,15 @@ const NewsTopic: React.FC<NewsTopicProps> = ({ setNewsInfo, newsInfo }) => {
   }
     
   return (
-    <section className='flex flex-col justify-center items-center mt-5'>
-      <div className='flex justify-center flex-wrap w-[900px] gap-2 bg-white rounded-lg p-4'>
+    <section className='flex flex-col justify-center items-center mt-5 px-4'>
+      <div className='flex justify-center flex-wrap w-full max-w-4xl gap-2 bg-white rounded-lg p-3 sm:p-4 md:p-6'>
         {topics.map((topic, index) => (
           <TopicSelector key={index} topic={topic} isSelected={newsInfo.topics.includes(topic)} onSelect={handleSelect} />
         ))}
       </div>
-      <p className='text-gray-500 text-sm mt-5'>{newsInfo.topics.length}/7 assuntos selecionados</p>
+      <p className='text-gray-500 text-xs sm:text-sm mt-4 sm:mt-5 text-center'>
+        {newsInfo.topics.length}/7 assuntos selecionados
+      </p>
     </section>
   )
 }

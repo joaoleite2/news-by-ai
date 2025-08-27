@@ -39,14 +39,13 @@ interface TextTypeProps {
 }
 
 const TextType: React.FC<TextTypeProps> = ({ setNewsInfo, newsInfo }) => {
-
   const handleClick = (index: number) => {
     setNewsInfo({ ...newsInfo, textType: cards[index].title })
   }
 
   return (
-    <section className='flex flex-col justify-center items-center mt-5'>
-      <div className='flex gap-4'>
+    <section className='flex flex-col justify-center items-center mt-5 px-4'>
+      <div className='flex flex-col sm:flex-row gap-4 w-full max-w-4xl'>
         {cards.map((card, index) => (
           <Card 
             key={index} 

@@ -141,7 +141,7 @@ const Home = () => {
             )}
           </AnimatePresence>
           <motion.div 
-            className='flex absolute bottom-30 right-30 gap-2'
+            className='flex justify-center mt-8 gap-2 w-full px-4'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.2 }}
