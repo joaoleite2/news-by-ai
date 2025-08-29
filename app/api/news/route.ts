@@ -20,11 +20,16 @@ export async function POST(request: Request) {
       credentials,
     });
 
+    // Obter o token de autenticação
     const client = await auth.getIdTokenClient(cloudRunUrl);
-    const response = await client.request({
-      url: `${cloudRunUrl}/news`,
-      method: 'POST',
-      data: newsInfo,
+    const token = await client.idTokenProvider.fetchIdToken(cloudRunUrl);
+
+    // Usar Axios diretamente para ter melhor controle dos erros
+    const response = await axios.post(`${cloudRunUrl}/news`, newsInfo, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
     });
     
     return NextResponse.json(response.data);
@@ -40,9 +45,21 @@ export async function POST(request: Request) {
     }
 
     if (axios.isAxiosError(error)) {
+        const status = error.response?.status || 500;
+        let errorMessage = 'Erro ao conectar com o servidor.';
+        
+        // Tratar especificamente o erro 429
+        if (status === 429) {
+          errorMessage = error.response?.data?.message || 'Você atingiu o limite de noticias por hoje. Tente novamente amanhã.';
+        } else if (error.response?.data?.message) {
+          errorMessage = error.response.data.message;
+        } else if (error.response?.data?.error) {
+          errorMessage = error.response.data.error;
+        }
+        
         return NextResponse.json(
-            { error: 'Erro ao buscar dados do serviço.', details: error.response?.data || error.message },
-            { status: error.response?.status || 500 }
+            { error: errorMessage },
+            { status: status }
         );
     }
 

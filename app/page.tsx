@@ -62,9 +62,21 @@ const Home = () => {
         setLoadingProgress(0)
       }, 500)
     } catch (error) {
-      console.error('Erro ao gerar notícia:', error)
-      setIsLoading(false)
-      setLoadingProgress(0)
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 429) {
+          window.location.href = '/error?code=429'
+        } else if (error.response?.status === 500) {
+          window.location.href = '/error?code=500'
+        } else if (error.response?.status === 400) {
+          window.location.href = '/error?code=400'
+        } else if (error.response?.data?.error) {
+          window.location.href = `/error?code=${error.response.status}&message=${encodeURIComponent(error.response.data.error)}`
+        } else {
+          window.location.href = '/error?code=500'
+        }
+      } else {
+        window.location.href = '/error?code=500'
+      }
     }
   }
 
