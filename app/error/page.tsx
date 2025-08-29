@@ -1,9 +1,10 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import Button from '../components/ui/Button'
 
-const Error = () => {
+const ErrorContent = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
   
@@ -96,6 +97,24 @@ const Error = () => {
         </p>
       </div>
     </main>
+  )
+}
+
+const Error = () => {
+  return (
+    <Suspense fallback={
+      <main className='flex flex-col items-center justify-center py-12 bg-gray-100 min-h-[100dvh]'>
+        <div className='bg-white rounded-3xl p-8 shadow-lg border border-gray-200 max-w-md w-full mx-4'>
+          <div className='flex flex-col items-center text-center'>
+            <h1 className='text-2xl sm:text-3xl font-bold text-gray-800 leading-tight'>
+              Carregando...
+            </h1>
+          </div>
+        </div>
+      </main>
+    }>
+      <ErrorContent />
+    </Suspense>
   )
 }
 
