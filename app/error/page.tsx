@@ -21,7 +21,7 @@ const ErrorContent = () => {
         return {
           title: 'Limite Atingido',
           description: 'Você já gerou o número máximo de notícias permitidas para hoje. Para continuar, volte amanhã!',
-          info: 'Limite diário: 10 notícias',
+          info: 'Limite diário: 8 notícias',
           color: 'blue'
         }
       case '500':
