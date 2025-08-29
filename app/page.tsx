@@ -6,6 +6,7 @@ import EaiNews from './components/EaiNews'
 import NewsTopic from './components/NewsTopic'
 import TextType from './components/TextType'
 import Button from './components/ui/Button'
+import ErrorPopup from './components/ui/ErrorPopup'
 import axios from 'axios'
 import GeneratedNews from './components/GeneratedNews'
 
@@ -29,8 +30,25 @@ const Home = () => {
   const [ generatedNews, setGeneratedNews ] = useState<News | null>(null)
   const [ isLoading, setIsLoading ] = useState(false)
   const [ loadingProgress, setLoadingProgress ] = useState(0)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleNextStep = () => {
+    if (newsInfo.topics.length === 0) {
+      setError('Por favor, selecione pelo menos um tópico antes de continuar.')
+      return
+    }
+    setNextStep(true)
+  }
 
   const handleGenerateNews = async () => {
+    if (newsInfo.topics.length === 0) {
+      setError('Por favor, selecione pelo menos um tópico.')
+      return
+    }
+    if (newsInfo.textType === '') {
+      setError('Por favor, selecione o tipo de texto.')
+      return
+    }
     setIsLoading(true)
     setLoadingProgress(0)
     
@@ -164,11 +182,17 @@ const Home = () => {
                 <Button variant='primary' onClick={handleGenerateNews}>Gerar</Button>
               </>
             ) : (
-              <Button variant='primary' onClick={() => setNextStep(true)}>Próximo</Button>
+              <Button variant='primary' onClick={handleNextStep}>Próximo</Button>
             )}
           </motion.div>
         </>
       )}
+      
+      <ErrorPopup
+        isVisible={!!error}
+        message={error || ''}
+        onClose={() => setError(null)}
+      />
     </main>
   )
 }
