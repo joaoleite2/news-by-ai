@@ -75,7 +75,7 @@ export async function POST(request: Request) {
   return NextResponse.json({
     title: "Notícia de Teste",
     text: "Esta é uma notícia gerada para fins de teste. O sistema está funcionando corretamente!",
-    font: ["Arial", "Helvetica"]
+    font: ["EA.I. News"]
   });
 }
 ```
